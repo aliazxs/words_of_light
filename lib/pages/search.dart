@@ -1,0 +1,111 @@
+import 'package:words_of_light/widgets/book_3d.dart';
+import 'package:words_of_light/widgets/message_popup.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:flutter/material.dart';
+import '../managers/settings_manager.dart';
+import '../models/book.dart';
+import '../providers/book_metadata/book_metadata.dart';
+import '../widgets/books_viewer.dart';
+import 'book_info.dart';
+
+class Search extends StatefulWidget {
+  const Search({
+    super.key,
+    required this.onBookDownload,
+    required this.bookMetadataEnum,
+    required this.settingsManager,
+  });
+
+  final void Function(Book book) onBookDownload;
+  final BookMetadataEnum bookMetadataEnum;
+  final SettingsManager settingsManager;
+
+  @override
+  SearchState createState() => SearchState();
+}
+
+class SearchState extends State<Search> {
+  List<Book> books = [];
+  final httpClient = http.Client();
+  BookMetadata? bookMetadata;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void search(String query) async {
+    bookMetadata = await createBookMetadata(widget.bookMetadataEnum);
+    if (bookMetadata == null) {
+      messagePopup(
+        context,
+        "No book metadata",
+        "Please choose a book metadata before searching anything.",
+      );
+      return;
+    }
+    books = await bookMetadata!.searchBooks(query);
+    setState(() {
+      books = books;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.only(
+          left: 10,
+          right: 10,
+          top: 10,
+        ),
+        color: Theme.of(context).colorScheme.surface,
+        child: Column(
+          children: [
+            TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Search',
+              ),
+              onSubmitted: search,
+            ),
+            Expanded(
+              child: BooksViewer(
+                settingsManager: widget.settingsManager,
+                books: books,
+                canSort: false,
+                onPressBook: (book) async {
+                  final Book? fullBook =
+                      await bookMetadata?.getBookData(book.bookIdentifier);
+                  if (fullBook != null) {
+                    final book3dData = await Book3DData.fromBook(fullBook);
+                    Navigator.push(
+                      context,
+                      createBookInfoPageRoute(
+                        BookInfo(
+                          wordsPerPage:
+                              widget.settingsManager.config.wordsPerPage,
+                          book: fullBook,
+                          book3dData: book3dData,
+                          onPressDownload: () =>
+                              widget.onBookDownload(fullBook),
+                        ),
+                      ),
+                    );
+                  } else {
+                    messagePopup(
+                      context,
+                      "Couldn't find book.",
+                      "The current book metadata couldn't find the requested book.",
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
