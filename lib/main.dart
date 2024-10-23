@@ -38,8 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    getApplicationDocumentsDirectory().then((path) {
-      applyPath(path);
+    getDownloadsDirectory().then((path) async {
+      if (path == null) {
+        Directory directory = await getApplicationDocumentsDirectory();
+        applyPath(directory);
+      } else {
+        applyPath(path);
+      }
     });
     super.initState();
   }
@@ -48,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
     settingsManager = SettingsManager(
       directory: directory,
     );
-    
+
     await settingsManager!.initialize();
 
     setState(() {
