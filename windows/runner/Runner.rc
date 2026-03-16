@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.aliadnan" "\0"
-            VALUE "FileDescription", "words_of_light" "\0"
+            VALUE "FileDescription", "كلامكم نور" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "words_of_light" "\0"
+            VALUE "InternalName", "kalamakum_noor" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.aliadnan. All rights reserved." "\0"
-            VALUE "OriginalFilename", "words_of_light.exe" "\0"
-            VALUE "ProductName", "words_of_light" "\0"
+            VALUE "OriginalFilename", "kalamakum_noor.exe" "\0"
+            VALUE "ProductName", "كلامكم نور" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,11 +1,11 @@
 {
-    "name": "words_of_light",
-    "short_name": "words_of_light",
+    "name": "كلامكم نور",
+    "short_name": "كلامكم نور",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "كلامهم يحيي القلوب — خزانة صوتية متواضعة لأنوار حديثهم الطاهر، نُقدّمها لاستماع ما يحيي القلوب ويُنير الصدور",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

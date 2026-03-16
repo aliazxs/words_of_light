@@ -1,30 +1,14 @@
-# words_of_light
+# كلامكم نور (Kalamakum Noor)
 
-A new Flutter project.
+كلامهم يحيي القلوب — خزانة صوتية متواضعة لأنوار حديثهم الطاهر، نُقدّمها بين أيديكم لاستماع ما يحيي القلوب ويُنير الصدور عليهم السلام.
 
-## Getting Started
+## البدء
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
+```bash
+flutter pub get
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## إضافة الكتب والملفات الصوتية
 
-## Assets
-
-The `assets` directory houses images, fonts, and any other files you want to
-include with your application.
-
-The `assets/images` directory contains [resolution-aware
-images](https://flutter.dev/docs/development/ui/assets-and-images#resolution-aware).
-
-## Localization
-
-This project generates localized messages based on arb files found in
-the `lib/src/localization` directory.
-
-To support additional languages, please visit the tutorial on
-[Internationalizing Flutter
-apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+راجع [ADD_BOOKS.md](ADD_BOOKS.md) — دليل بسيط لإضافة كتب جديدة وملفات صوتية وقارئين متعددين.
